@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import quizz_questions from '../../../assets/data/quizz_questions.json'
 
 @Component({
   selector: 'app-quizz',
@@ -8,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './quizz.component.css'
 })
 export class QuizzComponent implements OnInit {
+
   title: string = "";
   questions: any;
   questionSelected: any;
@@ -24,7 +26,36 @@ export class QuizzComponent implements OnInit {
   constructor(){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    if (quizz_questions) {
+      this.finished = false
+      this.title = quizz_questions.title
+
+      this.questions = quizz_questions.questions
+      this.questionSelected = quizz_questions.questions[this.questionIndex]
+
+      this.questionIndex = 0
+      this.questionMaxIndex = this.questions.length
+
+      console.log(this.questionIndex);
+      console.log(this.questionMaxIndex);
+
+
+    }
+  }
+
+  playerChoose(value: string) {
+    this.answers.push(value)
+    console.log(this.answers);
+    console.log("teste");
+  }
+
+  async nextStep(){
+    this.questionIndex += 1
+    if (this.questionMaxIndex > this.questionIndex) {
+      this.questionSelected = this.questions[this.questionIndex]
+    } else {
+      this.finished = true
+    }
   }
 
 }
