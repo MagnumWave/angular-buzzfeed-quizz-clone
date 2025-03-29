@@ -1,3 +1,25 @@
 <div class="quizz__container">
+  <div class="quizz_logo">
+    <img src="assets/imgs/logo.png" alt="" srcset="">
+    <!-- o assets só é encontrado quando se configura o angular.json-->
+    <!-- e quando se faz o ng serve mais uma vez -->
+    <!-- meu angular é o 19 e não veio preparado para carregar a imagem da pasta assets -->
+    <h1>{{ title }}</h1>
+  </div>
 
+  <div class="quizz_questions">
+    <h3>{{ questionSelected.question }}</h3>
+  </div>
+
+  <div class="quizz_options">
+    <button class="btn-option">
+      optionname
+    </button>
+  </div>
+
+  <div *ngIf="!finished" class="quizz_results">
+    <!-- *ngIf só funciona se importar o CommonModule -->
+    <h1>O seu resultado é:</h1>
+    <p>Resposta selecionada</p>
+  </div>
 </div>
